@@ -23,8 +23,9 @@ public class MainClass {
 	System.out.println("6.Get Top 10 Student List from Academy.");
 	System.out.println("7.Maximum failed Student");
 	System.out.println("8.Display Records");
-	System.out.println("9.Display batch name and trainer name of the batch whose average percentage result is best");
-	System.out.println("10.Exit.");
+	System.out.println("9.Display Student Information.");
+	System.out.println("10.Display batch name and trainer name having bestresult is best");
+	System.out.println("11.Exit.");
 	System.out.println("Enter the Choice...");
 	int choice=sc.nextInt();
 	
@@ -126,12 +127,24 @@ public class MainClass {
 		System.out.println();
 		break;
 	
-	case 9:
+	case 10:
+		System.out.println("Batch with best result");
+		System.out.println();
+		obj.bestBatch();
+		System.out.println();
 		
 		break;
-	case 10:
+		
+	case 9:
+		System.out.println("Displaying Student Information");
+		System.out.println();
+		obj.studentInfo();
+		System.out.println();
+		
+		break;
+	case 11:
 		Configure.closeConnection();
-		System.out.println("Exit");
+		System.out.println("---- Thank you ----");
 		System.exit(0);
 		break;	
 		

@@ -9,6 +9,8 @@ public class Configure {
 	public  final static String url="jdbc:mysql://localhost:3306/academy";
 	public static  Connection con=null;
 	
+	
+	//Making Connection with database.
 	public static Connection  connect()
 	{
 		
@@ -22,6 +24,7 @@ public class Configure {
 		
 		con=DriverManager.getConnection(url,id,psw);
 		System.out.println("Connected successfully to Academy database....");
+		System.out.println("<<<<< WELCOME TO ACADEMY >>>>>");
 		}
 		catch (Exception e)
 		{
@@ -33,7 +36,8 @@ public class Configure {
 		
 		}
 	
-	public  static void closeConnection() // Closing connection from database.
+	// Closing connection from database
+	public  static void closeConnection() 
 	{
 		try
 		{

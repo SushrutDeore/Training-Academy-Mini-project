@@ -21,7 +21,7 @@ public class DAOClass implements DAOInterface{
 	@Override
 	public void addStudent() 
 	{
-		String sql="insert into student(student_name,phoneno,batch_id,status) values(?,?,?,?)";
+		String sql="insert into student(student_name,student_lname,phoneno,batch_id,status) values(?,?,?,?,?)";
 		Student student=new Student();
 		student.setStudent();
 		try
@@ -29,9 +29,10 @@ public class DAOClass implements DAOInterface{
 			PreparedStatement ps=con.prepareStatement(sql);
 			
 			ps.setString(1, student.getStudentName());
-			ps.setString(2, student.getPhoneNo());
-			ps.setInt(3, student.getBatchId());
-			ps.setString(4, student.getStatus());
+			ps.setString(2, student.getlName());
+			ps.setString(3, student.getPhoneNo());
+			ps.setInt(4, student.getBatchId());
+			ps.setString(5, student.getStatus());
 			
 			 boolean flag=ps.execute();
 			 if(flag==false)
@@ -168,11 +169,13 @@ public class DAOClass implements DAOInterface{
 
 	@Override
 	public void updateMarks() {
-		String sql="update result set marks=20 where student_id=?";
+		String sql="update result set marks=? where student_id=?";
 		try
 		{
 			PreparedStatement ps=con.prepareStatement(sql);
 			System.out.println("Enter the Studentid: ");
+			ps.setInt(2, sc.nextInt());
+			System.out.println("Enter the marks.");
 			ps.setInt(1, sc.nextInt());
 			int row=ps.executeUpdate();
 			System.out.println(row+" Updated.");
@@ -276,6 +279,61 @@ public class DAOClass implements DAOInterface{
 			// TODO: handle exception
 			System.out.println("Unable to Fetch record.");
 		}
+	}
+
+	@Override
+	public void bestBatch() {
+		String sql="select teacher_name,batch_name,count(*) from student s inner join result r on s.student_id=r.student_id inner join teacher t on t.batch_id=s.batch_id inner join batch_details bd on bd.batch_id=s.batch_id  where r.marks>24 group by teacher_name limit 1"; 
+		try
+		{
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				System.out.println("Batch name : "+rs.getString(2));
+				System.out.println("Teacher name : "+rs.getString(1));
+				System.out.println("No of passed students : "+rs.getInt(3));
+			
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+	}
+
+	@Override
+	public void studentInfo() {
+		String sql="select s.student_id,s.student_name,s.student_lname,t.teacher_name,bd.batch_name from student s inner join result m on s.student_id=m.student_id  inner join  batch_details bd on bd.batch_id=s.batch_id inner join teacher t on t.batch_id=bd.batch_id where s.student_id=?";
+		try
+		{
+			PreparedStatement ps=con.prepareStatement(sql);
+			System.out.println("Enter studentID.");
+			ps.setInt(1, sc.nextInt());
+			ResultSet rs=ps.executeQuery();
+			
+			
+			if(rs.next())
+			{
+				System.out.println("Displaying student record.");
+				System.out.println("Student Id : "+rs.getInt(1));
+				System.out.println("Student Name :"+rs.getString(2)+" "+rs.getString(3));
+				System.out.println("Teacher Name : "+rs.getString(4));
+				System.out.println("Batch Name : "+rs.getString(5));	
+				
+					
+			}
+			else
+				System.out.println("No record Found...");
+			
+					
+		}
+		catch (Exception e) {
+			System.out.println("Unable to get record.");
+			// TODO: handle exception
+		}
+		
 	}
 	
 	

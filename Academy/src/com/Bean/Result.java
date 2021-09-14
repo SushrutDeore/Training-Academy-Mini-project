@@ -39,8 +39,7 @@ public class Result {
 	
 	public void setResult()
 	{
-//		System.out.println("Enter Result id:");
-//		this.setStudentId(sc.nextInt());
+
 		System.out.println("Enter Student id:");
 		this.setStudentId(sc.nextInt());
 		validateMarks();
@@ -59,23 +58,15 @@ public class Result {
 		System.out.println("Enter the Marks:");
 		{
 			int score=sc.nextInt();
-			if(score<=50)
+			if(score<=50 && score>=0)
 				this.setMarks(marks);
 			else
 			{
-				System.out.println("Maximum Score : 50");
+				System.out.println("Score must be between 0 to 50");
 				validateMarks();
 			}
 		}
 	}
 	
-	public boolean isPass()
-	{
-		if(this.getMarks()>=25)
-			return true;
-		else
-			return false;
-			
-	}
 
 }

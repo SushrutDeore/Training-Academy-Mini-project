@@ -1,7 +1,7 @@
 package com.Bean;
 
 public class Teacher {
-	//id name bathcid cont
+
 	private int teacherId;
 	private String teacherName;
 	private int batchId;
