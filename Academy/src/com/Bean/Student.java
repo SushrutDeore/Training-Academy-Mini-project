@@ -107,6 +107,9 @@ public class Student {
 		System.out.println(" Status : "+this.status);
 	}
 	
+	
+	//Validation methods.
+	
 	public boolean checkName(String name) 
 	{
 		String regex= "^[A-Z][A-Za-z]+";

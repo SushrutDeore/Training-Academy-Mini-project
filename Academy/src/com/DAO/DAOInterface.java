@@ -28,6 +28,12 @@ public interface DAOInterface {
 	
 	public void studentInfo();//Get students information.
 	
+	public void getStudentID();//Get students id by porividing name.
+	
+	public void getStaffDetails();
+	
+	public void noOfStudentPerBatch();
+	
 	
 
 }

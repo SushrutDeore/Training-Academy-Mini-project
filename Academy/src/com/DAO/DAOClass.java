@@ -79,29 +79,28 @@ public class DAOClass implements DAOInterface{
 	
 
 	@Override
-	public void addResult() {
-		String sql="insert into result (student_id,marks)values(?,?)";
-		Result result=new Result();
-		result.setResult();
+	public void addResult()
+	{
+		String sql="insert into result(student_id,marks) values(?,?)";
+		
 		try
 		{
 			PreparedStatement ps=con.prepareStatement(sql);
-			//ps.setInt(1, result.getResultId());
-			ps.setInt(1, result.getStudentId());
-			ps.setInt(2, result.getMarks());
-			
-			boolean row=ps.execute();
-			if(row==false)
-				System.out.println("Marks Entered Successfully.");
+			System.out.println("Enter Student id");
+			ps.setInt(1,sc.nextInt());
+			System.out.println("Enter the marks");
+			ps.setInt(2, sc.nextInt());
+			int row=ps.executeUpdate();
+			if(row>0)
+				System.out.println(row+" Updated.");
 			else
-				System.out.println("Unable to Insert data");
-			
+				System.out.println("Unable");
 		}
 		catch (Exception e) {
-			System.out.println("Unable to Proceed.");
 			// TODO: handle exception
+			System.out.println("Error");
+			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
@@ -332,6 +331,78 @@ public class DAOClass implements DAOInterface{
 		catch (Exception e) {
 			System.out.println("Unable to get record.");
 			// TODO: handle exception
+		}
+		
+	}
+
+	@Override
+	public void getStudentID() {
+		
+		String sql="select student_id from student s inner join batch_details bd on s.batch_id=bd.batch_id where student_name=? and student_lname=? and batch_name=?";
+		try
+		{
+			PreparedStatement ps=con.prepareStatement(sql);
+			System.out.println("Enter name of student");
+			String str=sc.nextLine();
+			String[] arr=str.split(" ");
+			ps.setString(1, arr[0]);
+			ps.setString(2, arr[1]);
+			System.out.println("Enter batch");
+			ps.setString(3, sc.next());
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				System.out.println(rs.getInt(1));
+			}
+			
+		}
+		catch (Exception e) {
+			System.out.println("Unable to get id...");
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+
+	@Override
+	public void getStaffDetails() {
+		String sql="select b.batch_id,b.batch_name,t.teacher_id,t.teacher_name from batch_details b inner join teacher t on t.batch_id=b.batch_id";
+		try
+		{
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			System.out.println("Batch ID \t Batch Name \t Teacher Id \t Teacher Name");
+			while(rs.next())
+			{
+				System.out.println(rs.getInt(1)+"\t\t"+rs.getString(2)+"\t\t"+rs.getInt(3)+"\t\t"+rs.getString(4));
+			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void noOfStudentPerBatch() {
+		String sql="select batch_name,count(*) from student s inner join batch_details b on s.batch_id=b.batch_id group by batch_name";
+		try
+		{
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			System.out.println("Batch name  \tNo. of Student");
+			while(rs.next())
+			{
+				System.out.println(rs.getString(1)+"\t\t"+rs.getInt(2));
+			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Unable to get record");
+			e.printStackTrace();
 		}
 		
 	}

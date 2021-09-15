@@ -7,6 +7,7 @@ import com.DAO.DAOClass;
 
 public class MainClass {
 	
+	
 	public static void main(String[] args) {
 		
 	
@@ -14,7 +15,7 @@ public class MainClass {
 	DAOClass obj=new DAOClass();
 	Scanner sc=new Scanner(System.in);
 	while(true) {
-	
+	System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
 	System.out.println("1.Add Data.");
 	System.out.println("2.Update Data.");
 	System.out.println("3.Delete data.");
@@ -22,10 +23,14 @@ public class MainClass {
 	System.out.println("5.Get merit list of Top 5 Students of batch.");
 	System.out.println("6.Get Top 10 Student List from Academy.");
 	System.out.println("7.Maximum failed Student");
-	System.out.println("8.Display Records");
+	System.out.println("8.Display Batch Details");
 	System.out.println("9.Display Student Information.");
-	System.out.println("10.Display batch name and trainer name having bestresult is best");
-	System.out.println("11.Exit.");
+	System.out.println("10.Display batch name and trainer name having best result");
+	System.out.println("11.Get students id.");
+	System.out.println("12.Get Teacher Batch Information.");
+	System.out.println("13.Number of students per Batch");
+	System.out.println("14.Exit.");
+	System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
 	System.out.println("Enter the Choice...");
 	int choice=sc.nextInt();
 	
@@ -50,6 +55,7 @@ public class MainClass {
 			obj.addResult();
 			System.out.println();
 			break;
+			
 		}
 		break;
 		
@@ -142,7 +148,26 @@ public class MainClass {
 		System.out.println();
 		
 		break;
+		
 	case 11:
+		System.out.println();
+		obj.getStudentID();
+		System.out.println();
+		break;
+		
+	case 12:
+		System.out.println();
+		obj.getStaffDetails();
+		System.out.println();
+		break;
+		
+	case 13:
+		System.out.println();
+		obj.noOfStudentPerBatch();
+		System.out.println();
+		break;
+		
+	case 14:
 		Configure.closeConnection();
 		System.out.println("---- Thank you ----");
 		System.exit(0);
