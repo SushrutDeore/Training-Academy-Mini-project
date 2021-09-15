@@ -20,63 +20,49 @@ public class Student {
 	}
 	
 	
-
 	public String getlName() {
 		return lName;
 	}
-
-
 
 	public void setlName(String lName) {
 		this.lName = lName;
 	}
 
-
-
 	public int getStudentId() {
 		return studentId;
 	}
-
 
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
 
-
 	public String getStudentName() {
 		return studentName;
 	}
-
 
 	public void setStudentName(String studentName) {
 		this.studentName = studentName;
 	}
 
-
 	public String getPhoneNo() {
 		return phoneNo;
 	}
-
 
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
-
 	public int getBatchId() {
 		return batchId;
 	}
-
 
 	public void setBatchId(int batchId) {
 		this.batchId = batchId;
 	}
 
-
 	public String getStatus() {
 		return status;
 	}
-
 
 	public void setStatus(String status) {
 		this.status = status;
@@ -93,9 +79,7 @@ public class Student {
 		this.validateStatus();
 		
 		System.out.println("Enter Batch ID:");
-		this.setBatchId(sc.nextInt());
-		
-		
+		this.setBatchId(sc.nextInt());	
 	}
 	
 	public void getStudent()
@@ -115,8 +99,7 @@ public class Student {
 		String regex= "^[A-Z][A-Za-z]+";
 		Pattern p=Pattern.compile(regex);
 		Matcher m=p.matcher(name);
-		return m.matches();
-					
+		return m.matches();				
 	}
 	
 	public void validateFname()

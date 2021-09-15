@@ -1,7 +1,7 @@
 package com.DAO;
 
 public interface DAOInterface {
-	
+		
 	public void addStudent();//Add record to Student's table.
 	
 	public void modifyStatus();//Modify status of student.
@@ -28,12 +28,11 @@ public interface DAOInterface {
 	
 	public void studentInfo();//Get students information.
 	
-	public void getStudentID();//Get students id by porividing name.
+	public void getStudentID();//Get students id by providing name.
 	
-	public void getStaffDetails();
+	public void getStaffDetails();//Get Staff details along with Batch Details.
 	
-	public void noOfStudentPerBatch();
+	public void noOfStudentPerBatch();//Get students count per batch.
 	
 	
-
 }

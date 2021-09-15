@@ -13,11 +13,11 @@ public class Configure {
 	//Making Connection with database.
 	public static Connection  connect()
 	{
-		
+		Scanner sc=new Scanner(System.in);
 		try
 		{
-		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter the id");
+		
+		System.out.println("Enter the user id");
 		String id=sc.next();
 		System.out.println("Enter the Password:");
 		String psw=sc.next();
@@ -31,7 +31,8 @@ public class Configure {
 		System.out.println("Error in Connection");
 		System.out.println("Id or Password is Wrong \n Try Again.");
 		connect();
-		}	
+		}
+		
 		return con;
 		
 		}

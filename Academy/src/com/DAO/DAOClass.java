@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+
 import com.Bean.Batch;
-import com.Bean.Result;
 import com.Bean.Student;
 import com.Configuration.Configure;
 
@@ -17,16 +17,18 @@ public class DAOClass implements DAOInterface{
 	
 	private Connection con=Configure.connect();
 	public Scanner  sc=new Scanner(System.in);
+	                   
 
 	@Override
 	public void addStudent() 
 	{
 		String sql="insert into student(student_name,student_lname,phoneno,batch_id,status) values(?,?,?,?,?)";
+		
 		Student student=new Student();
 		student.setStudent();
 		try
 		{
-			PreparedStatement ps=con.prepareStatement(sql);
+			 PreparedStatement ps=con.prepareStatement(sql);
 			
 			ps.setString(1, student.getStudentName());
 			ps.setString(2, student.getlName());
@@ -39,13 +41,14 @@ public class DAOClass implements DAOInterface{
 				 System.out.println("Record added Successfully...");
 			 else
 				 System.out.println("Unable to Add Record....");
+			 
+			 ps.close();	 
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Error while adding record");
 			e.printStackTrace();
 		}
-
 		
 	}
 
@@ -67,6 +70,8 @@ public class DAOClass implements DAOInterface{
 			
 			int row=ps.executeUpdate();
 			System.out.println(row+" rows updated.");
+			
+			ps.close();
 				
 		}
 		catch (Exception e) {
@@ -95,6 +100,8 @@ public class DAOClass implements DAOInterface{
 				System.out.println(row+" Updated.");
 			else
 				System.out.println("Unable");
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -114,6 +121,8 @@ public class DAOClass implements DAOInterface{
 			ps.setInt(1, sc.nextInt());
 			int row=ps.executeUpdate();
 			System.out.println(row+" Rows Deleted.");
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			System.out.println("Unable to delete data");
@@ -135,6 +144,8 @@ public class DAOClass implements DAOInterface{
 			
 			int row=ps.executeUpdate();
 			System.out.println(row+" row Updated");
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			
@@ -147,9 +158,10 @@ public class DAOClass implements DAOInterface{
 	@Override
 	public void changeBatch() {
 		String sql="update student set batch_id=? where student_id=?";
+		PreparedStatement ps=null;
 		try
 		{
-			PreparedStatement ps=con.prepareStatement(sql);
+			ps=con.prepareStatement(sql);
 			System.out.println("Enter the Student id.");
 			ps.setInt(2, sc.nextInt());
 			this.getBatchFromDatabase();
@@ -157,6 +169,8 @@ public class DAOClass implements DAOInterface{
 			ps.setInt(1, sc.nextInt());
 			int row=ps.executeUpdate();
 			System.out.println(row+" Updated.");
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -178,6 +192,8 @@ public class DAOClass implements DAOInterface{
 			ps.setInt(1, sc.nextInt());
 			int row=ps.executeUpdate();
 			System.out.println(row+" Updated.");
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -208,6 +224,8 @@ public class DAOClass implements DAOInterface{
 			{
 				System.out.println(itr.next());
 			}
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -232,6 +250,8 @@ public class DAOClass implements DAOInterface{
 				System.out.println(rs.getInt(1)+"\t"+rs.getString(2)+"\t"+rs.getInt(3));
 			}
 			
+			ps.close();
+			
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -253,6 +273,8 @@ public class DAOClass implements DAOInterface{
 			{
 				System.out.println(rs.getInt(1)+"\t"+rs.getString(2)+"\t"+rs.getInt(3)+"\t"+rs.getString(4));	
 			}
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -272,6 +294,8 @@ public class DAOClass implements DAOInterface{
 			{
 				System.out.println(rs.getString(1)+"\t\t|"+rs.getInt(2));
 			}
+			
+			ps.close();
 					
 		}
 		catch (Exception e) {
@@ -294,6 +318,8 @@ public class DAOClass implements DAOInterface{
 				System.out.println("No of passed students : "+rs.getInt(3));
 			
 			}
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -326,7 +352,7 @@ public class DAOClass implements DAOInterface{
 			else
 				System.out.println("No record Found...");
 			
-					
+			ps.close();		
 		}
 		catch (Exception e) {
 			System.out.println("Unable to get record.");
@@ -355,14 +381,12 @@ public class DAOClass implements DAOInterface{
 				System.out.println(rs.getInt(1));
 			}
 			
+			ps.close();		
 		}
 		catch (Exception e) {
 			System.out.println("Unable to get id...");
 			e.printStackTrace();
-		}
-		
-		
-		
+		}		
 	}
 
 	@Override
@@ -377,13 +401,14 @@ public class DAOClass implements DAOInterface{
 			{
 				System.out.println(rs.getInt(1)+"\t\t"+rs.getString(2)+"\t\t"+rs.getInt(3)+"\t\t"+rs.getString(4));
 			}
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Error");
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 
 	@Override
@@ -398,16 +423,14 @@ public class DAOClass implements DAOInterface{
 			{
 				System.out.println(rs.getString(1)+"\t\t"+rs.getInt(2));
 			}
+			
+			ps.close();
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Unable to get record");
 			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	
+		}		
+	}		
 
 }

@@ -42,8 +42,7 @@ public class Result {
 
 		System.out.println("Enter Student id:");
 		this.setStudentId(sc.nextInt());
-		validateMarks();
-		
+		validateMarks();	
 	}
 	
 	public void getResult()

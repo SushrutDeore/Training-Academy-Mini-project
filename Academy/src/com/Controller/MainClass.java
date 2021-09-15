@@ -1,7 +1,6 @@
 package com.Controller;
 
 import java.util.Scanner;
-
 import com.Configuration.Configure;
 import com.DAO.DAOClass;
 
@@ -10,8 +9,6 @@ public class MainClass {
 	
 	public static void main(String[] args) {
 		
-	
-	
 	DAOClass obj=new DAOClass();
 	Scanner sc=new Scanner(System.in);
 	while(true) {
@@ -169,7 +166,10 @@ public class MainClass {
 		
 	case 14:
 		Configure.closeConnection();
-		System.out.println("---- Thank you ----");
+		
+		System.out.println("---- Thank you -------");
+		System.out.println("..........-^-.........");
+		sc.close();
 		System.exit(0);
 		break;	
 		
