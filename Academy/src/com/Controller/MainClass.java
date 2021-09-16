@@ -23,10 +23,9 @@ public class MainClass {
 	System.out.println("8.Display Batch Details");
 	System.out.println("9.Display Student Information.");
 	System.out.println("10.Display batch name and trainer name having best result");
-	System.out.println("11.Get students id.");
-	System.out.println("12.Get Teacher Batch Information.");
-	System.out.println("13.Number of students per Batch");
-	System.out.println("14.Exit.");
+	System.out.println("11.Get Teacher Batch Information.");
+	System.out.println("12.Number of students per Batch");
+	System.out.println("13.Exit.");
 	System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>");
 	System.out.println("Enter the Choice...");
 	int choice=sc.nextInt();
@@ -148,23 +147,17 @@ public class MainClass {
 		
 	case 11:
 		System.out.println();
-		obj.getStudentID();
+		obj.getStaffDetails();
 		System.out.println();
 		break;
 		
 	case 12:
 		System.out.println();
-		obj.getStaffDetails();
-		System.out.println();
-		break;
-		
-	case 13:
-		System.out.println();
 		obj.noOfStudentPerBatch();
 		System.out.println();
 		break;
 		
-	case 14:
+	case 13:
 		Configure.closeConnection();
 		
 		System.out.println("---- Thank you -------");

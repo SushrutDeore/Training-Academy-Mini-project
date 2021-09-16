@@ -43,7 +43,7 @@ public class Configure {
 		try
 		{
 		con.close();
-		
+	
 		
 		System.out.println("Connection closed.....");
 		}
