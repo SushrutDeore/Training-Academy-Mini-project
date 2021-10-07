@@ -43,6 +43,7 @@ public class MainClass {
 			System.out.println("Adding Record to database");
 			System.out.println();
 			obj.addStudent();
+			obj.getLastIndex();
 			System.out.println();
 			break;
 		case 2:

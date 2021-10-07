@@ -23,13 +23,11 @@ public class DAOClass implements DAOInterface{
 	public void addStudent() 
 	{
 		String sql="insert into student(student_name,student_lname,phoneno,batch_id,status) values(?,?,?,?,?)";
-		
 		Student student=new Student();
 		student.setStudent();
 		try
 		{
-			 PreparedStatement ps=con.prepareStatement(sql);
-			
+		 PreparedStatement ps=con.prepareStatement(sql);
 			ps.setString(1, student.getStudentName());
 			ps.setString(2, student.getlName());
 			ps.setString(3, student.getPhoneNo());
@@ -240,7 +238,7 @@ public class DAOClass implements DAOInterface{
 		{
 			String sql="select s.student_id,s.student_name,r.marks from student s inner join result r on s.student_id=r.student_id where batch_id=? && marks>24 order by marks desc limit 5";
 			PreparedStatement ps=con.prepareStatement(sql);
-			System.out.println("Enter the Department id");
+			System.out.println("Enter the Batch id");
 			int id=sc.nextInt();
 			ps.setInt(1, id);
 			ResultSet rs=ps.executeQuery();
@@ -361,33 +359,7 @@ public class DAOClass implements DAOInterface{
 		
 	}
 
-	@Override
-	public void getStudentID() {
-		
-		String sql="select student_id from student s inner join batch_details bd on s.batch_id=bd.batch_id where student_name=? and student_lname=? and batch_name=?";
-		try
-		{
-			PreparedStatement ps=con.prepareStatement(sql);
-			System.out.println("Enter name of student");
-			String str=sc.nextLine();
-			String[] arr=str.split(" ");
-			ps.setString(1, arr[0]);
-			ps.setString(2, arr[1]);
-			System.out.println("Enter batch");
-			ps.setString(3, sc.next());
-			ResultSet rs=ps.executeQuery();
-			while(rs.next())
-			{
-				System.out.println(rs.getInt(1));
-			}
-			
-			ps.close();		
-		}
-		catch (Exception e) {
-			System.out.println("Unable to get id...");
-			e.printStackTrace();
-		}		
-	}
+	
 
 	@Override
 	public void getStaffDetails() {
@@ -431,6 +403,28 @@ public class DAOClass implements DAOInterface{
 			System.out.println("Unable to get record");
 			e.printStackTrace();
 		}		
-	}		
+	}
+	
+	
+	public void getLastIndex()
+	{
+		String sql="select max(student_id) from student";
+		try
+		{
+			PreparedStatement ps=con.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				System.out.println("ID Generated :"+rs.getInt(1));
+				
+			}
+		}
+		catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+	
+	}
 
 }
